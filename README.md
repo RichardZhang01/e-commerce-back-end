@@ -46,7 +46,7 @@ Before running the app, create a file named `.env` in the main folder with the f
       DB_PW='<your mySQL password>'
       DB_NAME='ecommerce_db'
 
-Replace the DB_USER and DB_PW fields with your credentials.
+Replace the `DB_USER` and `DB_PW` fields with your credentials.
 
 ## <a id="usage"></a>Usage
 
@@ -64,7 +64,7 @@ Open up [Insomnia](https://insomnia.rest/), or similar program, and use the foll
 
 ## <a id="video"></a>Video Demonstration
 
-The full video demonstration can be found [here](https://drive.google.com/file/d/1akaXlDVAALUGOg0UpZPiW7CJCMMjRKeb/view)
+The full video demonstration can be found [here](https://drive.google.com/file/d/1yt2sIUhNZ_8uRwrzLQY4BIKu6EP4b3ET/view)
 
 ![Example GET](./assets/images/screenshot-1.png)
 ![Example POST](./assets/images/screenshot-2.png)
