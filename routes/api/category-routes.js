@@ -9,16 +9,16 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Products
   try {
 
-    const categoryData = await Category.findAll({ include: Product });
+    const categoriesData = await Category.findAll({ include: Product });
 
-    if (!categoryData) {
+    if (!categoriesData) {
       res.status(404).json({ message: "No categories found" });
       return;
     }
 
     res.status(200).json({ 
       message: "Successfully retrieved categories data",
-      data: categoryData
+      data: categoriesData
     });
 
   } catch (err) {
@@ -35,6 +35,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async ({ params: { id } }, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  if (!/^[0-9]+$/.test(id)) {
+    res.status(400).json({ message: "Bad request, id must be a number" });
+    return;
+  };
+
   try {
 
     const categoryData = await Category.findByPk(id, { include: Product });
@@ -63,7 +68,7 @@ router.get('/:id', async ({ params: { id } }, res) => {
 router.post('/', async ({ body, body: { category_name } }, res) => {
   // create a new category
   if (!category_name) {
-    res.status(400).json({ message: "Bad request, must include a category_name" });
+    res.status(400).json({ message: "Bad request, must include a non-empty category_name" });
     return;
   };
 
@@ -90,7 +95,7 @@ router.post('/', async ({ body, body: { category_name } }, res) => {
 router.put('/:id', async ({ body, body: { category_name }, params}, res) => {
   // update a category by its `id` value
   if (!category_name) {
-    res.status(400).json({ message: "Bad request, must include a category_name" });
+    res.status(400).json({ message: "Bad request, must include a non-empty category_name" });
     return;
   };
 
